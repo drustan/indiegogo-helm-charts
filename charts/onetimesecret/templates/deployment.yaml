@@ -8,6 +8,9 @@ metadata:
     {{- include "common.tplValues.render" ( dict "value" .Values.commonLabels "scope" $ ) | nindent 4 }}
     {{- end }}
 spec:
+  {{- if .Values.serviceAccount.name }}
+  serviceAccountName: {{ .Values.serviceAccount.name }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ include "common.names.fullname" . }}
