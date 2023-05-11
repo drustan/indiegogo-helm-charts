@@ -27,6 +27,9 @@ spec:
       - name: ots-config
         configMap:
           name: {{ printf "%s-config" (include "common.names.fullname" .) }}
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
+      {{- end }}
       containers:
       - name: onetimesecret
         {{- with .Values.image }}
@@ -63,3 +66,6 @@ spec:
         - name: ots-config
           mountPath: /usr/src/app/etc/config
           subPath: config
+        {{- if .Values.extraVolumeMounts }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
+        {{- end }}
