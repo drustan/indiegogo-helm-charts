@@ -11,6 +11,10 @@ spec:
   {{- if .Values.serviceAccount.name }}
   serviceAccountName: {{ .Values.serviceAccount.name }}
   {{- end }}
+  {{- with .Values.imagePullSecrets }}
+  imagePullSecrets:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ include "common.names.fullname" . }}

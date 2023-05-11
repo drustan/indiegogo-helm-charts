@@ -136,6 +136,7 @@ image:
 
   pullPolicy: IfNotPresent
 
+imagePullSecrets: []
 
 ## @section Deployment parameters
 
