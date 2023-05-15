@@ -8,9 +8,6 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
 spec:
-  {{- if .Values.serviceAccount.name }}
-  serviceAccountName: {{ .Values.serviceAccount.name }}
-  {{- end }}
   {{- with .Values.imagePullSecrets }}
   imagePullSecrets:
     {{- toYaml . | nindent 8 }}
@@ -27,6 +24,9 @@ spec:
       labels:
         app: {{ include "common.names.fullname" . }}
     spec:
+      {{- if .Values.serviceAccount.name }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
       volumes:
       - name: ots-config
         configMap:
