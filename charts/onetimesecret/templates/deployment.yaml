@@ -72,7 +72,7 @@ spec:
         {{- end }}
         volumeMounts:
         - name: ots-config
-          mountPath: /usr/src/app/etc/config
+          mountPath: /app/etc/config
           subPath: config
         {{- if .Values.extraVolumeMounts }}
         {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 8 }}
