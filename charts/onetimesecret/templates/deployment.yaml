@@ -44,6 +44,10 @@ spec:
         image: "{{- if contains ":" .repository -}}{{ .repository }}{{- else -}}{{- if .registry -}}{{ .registry }}/{{- end -}}{{ .repository }}:{{ default $.Chart.AppVersion .tag }}{{- end -}}"
         {{- end }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        stdin: true
+        tty: true
+        command: ["./bin/entrypoint.sh"]
+        args: ["bundle", "exec", "thin", "-R", "config.ru", "-a", "0.0.0.0", "-p", "7143", "start"]
         env:
         - name: ONETIMESECRET_SECRET
           valueFrom:
