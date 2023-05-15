@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     {{- if .Values.commonLabels }}
-    {{- include "common.tplValues.render" ( dict "value" .Values.commonLabels "scope" $ ) | nindent 4 }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
 spec:
   {{- if .Values.serviceAccount.name }}
@@ -32,7 +32,7 @@ spec:
         configMap:
           name: {{ printf "%s-config" (include "common.names.fullname" .) }}
       {{- if .Values.extraVolumes }}
-      {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 6 }}
       {{- end }}
       containers:
       - name: onetimesecret
@@ -71,5 +71,5 @@ spec:
           mountPath: /usr/src/app/etc/config
           subPath: config
         {{- if .Values.extraVolumeMounts }}
-        {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 8 }}
         {{- end }}

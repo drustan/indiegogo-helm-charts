@@ -14,10 +14,8 @@ sources:
   - https://github.com/onetimesecret/onetimesecret
 dependencies:
   - name: common
-    version: "0.1.2"
-    repository: https://charts.indiegogo.com/
-    tags:
-      - indiegogo-common
+    version: 1.x.x
+    repository: https://charts.bitnami.com/bitnami
   - name: redis
     version: "0.4.6"
     repository: https://groundhog2k.github.io/helm-charts/
