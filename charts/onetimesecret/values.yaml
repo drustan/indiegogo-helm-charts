@@ -223,7 +223,7 @@ readinessProbe: {}
 
 ## @param {integer} networkPort - Set the port to be used across the OTS container, livenessProbe, service, and ingress
 ##
-networkPort: 3000
+networkPort: 7143
 ## Service parameters
 ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 ## @param {integer} service.port - Override the default port (`networkPort`) used in the service
